@@ -1,0 +1,33 @@
+[project]
+name = "sscm_reader"
+version = "0.1.0"
+authors = [
+  { name="Lion Cassens", email="lionc@posteo.de" },
+]
+description = "Converts sound sensor SSCM files to pandas DataFrames."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "pandas",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["sscm_reader"]
+
+[project.urls]
+Homepage = "https://github.com/solar-soundscape-sensor/sscm-reader"
+Issues = "https://github.com/solar-soundscape-sensor/sscm-reader/issues"

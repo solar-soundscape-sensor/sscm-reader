@@ -10,21 +10,21 @@ labels = ["vehicle", "honking", "aircraft", "siren", "human",
 def read_header(f):
     """
     Reads and validates the header section of an SSCM file.
-    
+
     Takes a pointer to an SSCM file and reads its header.
     Checks if the file format is correct and if the format version is supported.
     If the file seems valid, various metadata are returned.
-    
+
     Args:
         f: Pointer to file already opened in binary mode
-        
+
     Returns:
         tuple: (format_version, file_created_ts, sensor_name, num_source_classes)
             - format_version (str): Version of the SSCM file format
             - file_created_ts (int): Unix timestamp when file was created
             - sensor_name (str): Name of the sensor that created the file
             - num_source_classes (int): Number of sound source classification classes
-            
+
     Raises:
         RuntimeError: If magic bytes don't match expected format
         RuntimeError: If file format version is not supported
@@ -55,24 +55,24 @@ def read_header(f):
 def read_sscm(path, add_tz_hours=None):
     """
     Reads one SSCM file and returns its content as DataFrames.
-    
+
     Parses a single SSCM file, extracting all sensor data including loudness measurements,
     sharpness values, sound source classifications, voltage readings, and event logs.
     Converts timestamps to pandas datetime objects and optionally applies timezone offset.
-    
+
     Args:
         path (str): Path to the SSCM file to read
         add_tz_hours (int, optional): Hours to add for timezone adjustment
-        
+
     Returns:
         tuple: (sensor_name, loudness, sharpness, source, voltage, event_log)
             - sensor_name (str): Name of the sensor that created the file
             - loudness (pd.DataFrame): Loudness measurements with columns ['time', 'dba', 'spl_a']
-            - sharpness (pd.DataFrame): Sharpness values with columns ['time', 'sharpness']  
+            - sharpness (pd.DataFrame): Sharpness values with columns ['time', 'sharpness']
             - source (pd.DataFrame): Sound source classifications with time and probability columns
             - voltage (pd.DataFrame): Voltage readings with columns ['time', 'mV']
             - event_log (pd.DataFrame): System events with columns ['time', 'event', 'event value']
-            
+
     Raises:
         RuntimeError: If file format is invalid or unsupported entry type is encountered
     """
